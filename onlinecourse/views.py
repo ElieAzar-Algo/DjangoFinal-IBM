@@ -115,7 +115,7 @@ def submit(request, course_id):
      course = get_object_or_404(Course, pk=course_id)
      user = request.user
      enrollment = Enrollment.objects.get(user=user, course=course)
-     submission = Submission.objects.create(enrollment=enrollment, choices=submitted_anwsers)
+     submission = Submission.objects.create(enrollment=enrollment)
      return HttpResponseRedirect(reverse(viewname='onlinecourse:exam_result', args=(submission.id,)))
      
 
@@ -136,6 +136,10 @@ def extract_answers(request):
         # Get the selected choice ids from the submission record
         # For each selected choice, check if it is a correct answer or not
         # Calculate the total score
-#def show_exam_result(request, course_id, submission_id):
+def show_exam_result(request, course_id, submission_id):
+
+    course = get_object_or_404(Course, pk=course_id)
+    submission = get_object_or_404(Course, pk=submission_id)
+    
 
 
